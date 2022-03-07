@@ -7,9 +7,11 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 
   const user = await document.query({
     TableName: "user_todos",
-    KeyConditionExpression: "id = :id",
-    ExpressionAttributeValues: { ":id": id }
-  }).promise()
+    KeyConditionExpression: "user_id = :user_id",
+    ExpressionAttributeValues: { ":user_id": id }
+  }).promise();
+
+  console.log(`${JSON.stringify(user.Items[0].id)} maggy`)
 
   if(!user) return { statusCode: 400, body: "Usuário não existe" }
 

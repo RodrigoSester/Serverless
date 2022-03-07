@@ -21,11 +21,6 @@ const serverlessConfiguration: AWS = {
         Effect: "Allow",
         Action: ["dynamodb:*"],
         Resource: ["*"]
-      },
-      {
-        Effect: "Allow",
-        Action: ["s3:*"],
-        Resource: ["*"]
       }
     ]
   },
@@ -91,13 +86,21 @@ const serverlessConfiguration: AWS = {
             {
               AttributeName: "id",
               AttributeType: "S"
+            },
+            {
+              AttributeName: "user_id",
+              AttributeType: "S"
             }
           ],
           KeySchema: [
             {
-              AttributeName: "id",
+              AttributeName: "user_id",
               KeyType: "HASH"
-            }
+            },
+            {
+              AttributeName: "id",
+              KeyType: "RANGE"
+            },
           ]
         }
       }
